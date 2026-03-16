@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Mobile Legends - Gogogo Style</title>
+    <link rel="stylesheet" href="mlbb.css">
+</head>
+<body>
+
+<div class="container">
+   <div class="card product-header">
+        <div class="item-wide">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf8Nd_t-goiTMb9piIKbt8MwubxvGgCY3QyQ&s" alt="ML Banner" class="banner-img">
+            <div class="info">
+                <div class="info-title">
+                    <img src="https://via.placeholder.com/25" alt="ML Icon" class="mini-icon">
+                    <h4>Mobile Legends</h4>
+                </div>
+                <p>Moonton</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+    <div class="step-title"><span>1</span> Masukkan Data Akun</div>
+    <div class="input-group">
+        <input type="number" id="user-id" placeholder="Masukkan User ID">
+        <input type="number" id="zone-id" placeholder="( Zone ID )">
+    </div>
+    <div id="nickname-display" class="nickname-box" style="display: none;">
+        <p>Nickname: <strong id="nickname-text"></strong></p>
+        <p>Region: <span id="region-text"></span></p>
+    </div>
+    <p class="input-hint">Untuk mengetahui User ID Anda, silakan klik menu profil...</p>
+</div>
+
+    <div class="card">
+        <div class="step-title"><span>2</span> Pilih Nominal Layanan</div>
+        <div class="grid-nominal">
+            <div class="nominal-item active">
+                <p>86 Diamonds</p>
+                <span>Rp 22.000</span>
+            </div>
+            <div class="nominal-item">
+                <p>172 Diamonds</p>
+                <span>Rp 44.000</span>
+            </div>
+            <div class="nominal-item">
+                <p>257 Diamonds</p>
+                <span>Rp 66.000</span>
+            </div>
+            <div class="nominal-item">
+                <p>706 Diamonds</p>
+                <span>Rp 180.000</span>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="step-title"><span>3</span> Pilih Metode Pembayaran</div>
+        <div class="grid-payment">
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://zonalogo.com/_image?href=https%3A%2F%2Fassets.zonalogo.com%2Ffinance%2Fdana.id%2Ficon-dark-1769269543206.png&w=400&h=400&f=webp" alt="DANA">
+                    <span class="payment-name">DANA</span>
+                </div>
+                <div class="payment-price">BEA:500</div>
+            </div>
+
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvsfy5XhTdsNK2hJgI_HEXeBblpsNcE2XAWw&s" alt="OVO">
+                    <span class="payment-name">OVO</span>
+                </div>
+                <div class="payment-price">BEA:800</div>
+            </div>
+
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1_u4kBagPaDWERIyFFmDI8VxkzZEd4YFWQ&s" alt="GoPay">
+                    <span class="payment-name">GoPay</span>
+                </div>
+                <div class="payment-price">BEA:2.100</div>
+            </div>
+
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://images.seeklogo.com/logo-png/39/1/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png" alt="QRIS">
+                    <span class="payment-name">QRIS</span>
+                </div>
+                <div class="payment-price">BEA:1,5%</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-buy">Beli Sekarang</button>
+</div>
+
+</div>
+
+<script>
+    // Mengambil semua elemen nominal-item
+    const nominalItems = document.querySelectorAll('.nominal-item');
+
+    nominalItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // 1. Hapus class 'active' dari semua item
+            nominalItems.forEach(i => i.classList.remove('active'));
+            
+            // 2. Tambahkan class 'active' ke item yang diklik
+            this.classList.add('active');
+        });
+    });
+</script>
+<script>
+function selectPayment(element) {
+    // Ambil semua item pembayaran
+    const items = document.querySelectorAll('.payment-item');
+    
+    // Hapus class active dari semua item
+    items.forEach(item => item.classList.remove('active'));
+    
+    // Tambahkan class active ke yang diklik
+    element.classList.add('active');
+}
+</script>
+<div id="checkout-modal" class="modal">
+    <div class="modal-content">
+        <h3>Detail Pesanan</h3>
+        <hr>
+        <div class="modal-body">
+            <p><strong>Username:</strong> <span id="res-nickname">-</span></p>
+            <p><strong>ID:</strong> <span id="res-id">-</span></p>
+            <p><strong>Item:</strong> <span id="res-item">-</span></p>
+            <p><strong>Pembayaran:</strong> <span id="res-payment">-</span></p>
+        </div>
+        <div class="modal-footer">
+            <div class="total-section">
+                <span class="total-label">Total Pembayaran:</span>
+                <span id="res-total" class="total-price">Rp 0</span>
+            </div>
+            <div class="modal-buttons">
+                <button id="btn-batal" class="btn-cancel">Batal</button>
+                <button id="btn-konfirmasi" class="btn-confirm">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// 1. Fungsi pembersih angka yang lebih kuat
+function extractNumber(text) {
+    if (!text) return 0;
+    // Menghapus semua karakter kecuali angka
+    // Contoh: "Rp 22.000" -> "22000"
+    let clean = text.replace(/[^0-9]/g, '');
+    return parseInt(clean) || 0;
+}
+
+document.querySelector('.btn-buy').addEventListener('click', function() {
+    const userId = document.getElementById('user-id').value;
+    const zoneId = document.getElementById('zone-id').value;
+    const activeNominalItem = document.querySelector('.nominal-item.active');
+    const activePaymentItem = document.querySelector('.payment-item.active');
+
+    if(!userId || !zoneId || !activeNominalItem || !activePaymentItem) {
+        alert("Lengkapi data terlebih dahulu!");
+        return;
+    }
+
+    // 2. Ambil teks harga dari HTML
+    const itemPriceText = activeNominalItem.querySelector('span').innerText; // Contoh: "Rp 22.000"
+    const feeText = activePaymentItem.querySelector('.payment-price').innerText; // Contoh: "BEA:1,5%" atau "BEA:500"
+
+    const basePrice = extractNumber(itemPriceText);
+    let total = basePrice;
+
+    // 3. Logika hitung BEA (Pajak/Admin)
+    if (feeText.includes('%')) {
+        // Jika persen, ambil angka desimalnya (mengganti koma jadi titik untuk hitungan)
+        let percentValue = feeText.replace('BEA:', '').replace('%', '').replace(',', '.');
+        let percent = parseFloat(percentValue) / 100;
+        total = basePrice + (basePrice * percent);
+    } else {
+        // Jika angka biasa
+        total = basePrice + extractNumber(feeText);
+    }
+
+    // 4. Update Tampilan Modal
+    document.getElementById('res-id').innerText = `${userId} (${zoneId})`;
+    document.getElementById('res-item').innerText = activeNominalItem.querySelector('p').innerText;
+    document.getElementById('res-payment').innerText = activePaymentItem.querySelector('.payment-name').innerText;
+    document.getElementById('res-total').innerText = "Rp " + Math.round(total).toLocaleString('id-ID');
+    
+    document.getElementById('checkout-modal').style.display = "block";
+   // Pastikan variabel modal bisa diakses
+const modal = document.getElementById('checkout-modal');
+const btnBatal = document.getElementById('btn-batal');
+
+// Fungsi untuk menutup modal
+function closeModal() {
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Pasang perintah klik pada tombol Batal
+if (btnBatal) {
+    btnBatal.addEventListener('click', function() {
+        closeModal();
+    });
+}
+
+// Tambahan: Klik area hitam di luar modal untuk menutup
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+} ;}
+);
+</script>
+<script>document.getElementById('btn-konfirmasi').addEventListener('click', function() {
+    // 1. Ambil data yang sudah ada di Overlay
+    const idServer = document.getElementById('res-id').innerText;
+    const produk = document.getElementById('res-item').innerText;
+    const metode = document.getElementById('res-payment').innerText;
+    const total = document.getElementById('res-total').innerText;
+    
+    // 2. Susun Pesan WhatsApp (Gunakan %0A untuk baris baru)
+    const nomorWA = "6283857793319";
+    const teksPesan = 
+        `-------TOP UP MLBB💎-------%0A` +
+        `ID DAN ID SERVER: ${idServer}%0A` +
+        `PRODUK: ${produk}%0A` +
+        `METODE PEMBAYARAN: ${metode}%0A` +
+        `TOTAL: ${total}%0A%0A` +
+        `TOLONG YA MIN AKU MAU BELI DENGAN DATA TERSEBUT MOHON DI RESPON DAN LANJUT KE PEMBAYARAN YA🙏🏻`;
+
+    // 3. Arahkan ke WhatsApp
+    const urlWA = `https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`;
+    
+    // Buka di tab baru
+    window.open(urlWA, '_blank');
+});
+</script>
+</body>
+</html>

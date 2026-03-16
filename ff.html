@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Free Fire - FF Style</title>
+    <link rel="stylesheet" href="ff.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card product-header">
+    <div class="item-wide">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-s-WKpIiGUL5XgTZZMkg2oprD59H9z8gbA&s" alt="FF Banner" class="banner-img">
+        <div class="info">
+            <div class="info-title">
+                <h4>Free Fire</h4>
+            </div>
+            <p>Garena</p>
+        </div>
+    </div>
+</div>
+    </div>
+
+   <div class="card">
+    <div class="card">
+    <div class="step-title"><span>1</span> Masukkan ID Player</div>
+    <div class="input-group">
+    <input type="number" id="user-id" placeholder="Contoh: 12345678" oninput="if(this.value.length > 16) this.value = this.value.slice(0, 16);">
+</div>
+    <p class="input-hint">ID Player biasanya terdiri dari 6 hingga 16 angka.</p>
+</div>
+</div>
+
+    <div class="card">
+    <div class="step-title"><span>2</span> Pilih Nominal Diamonds</div>
+    <div class="grid-nominal">
+        <div class="nominal-item active" onclick="selectNominal(this)">
+            <p>70 Diamonds</p>
+            <span>Rp 10.000</span>
+        </div>
+        <div class="nominal-item" onclick="selectNominal(this)">
+            <p>140 Diamonds</p>
+            <span>Rp 20.000</span>
+        </div>
+        <div class="nominal-item" onclick="selectNominal(this)">
+            <p>355 Diamonds</p>
+            <span>Rp 50.000</span>
+        </div>
+        <div class="nominal-item" onclick="selectNominal(this)">
+            <p>720 Diamonds</p>
+            <span>Rp 100.000</span>
+        </div>
+    </div>
+</div>
+
+    <div class="card">
+        <div class="card">
+        <div class="step-title"><span>3</span> Pilih Metode Pembayaran</div>
+        <div class="grid-payment">
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://zonalogo.com/_image?href=https%3A%2F%2Fassets.zonalogo.com%2Ffinance%2Fdana.id%2Ficon-dark-1769269543206.png&w=400&h=400&f=webp" alt="DANA">
+                    <span class="payment-name">DANA</span>
+                </div>
+                <div class="payment-price">BEA:500</div>
+            </div>
+
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvsfy5XhTdsNK2hJgI_HEXeBblpsNcE2XAWw&s" alt="OVO">
+                    <span class="payment-name">OVO</span>
+                </div>
+                <div class="payment-price">BEA:800</div>
+            </div>
+
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1_u4kBagPaDWERIyFFmDI8VxkzZEd4YFWQ&s" alt="GoPay">
+                    <span class="payment-name">GoPay</span>
+                </div>
+                <div class="payment-price">BEA:2.100</div>
+            </div>
+
+            <div class="payment-item" onclick="selectPayment(this)">
+                <div class="payment-top">
+                    <img src="https://images.seeklogo.com/logo-png/39/1/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png" alt="QRIS">
+                    <span class="payment-name">QRIS</span>
+                </div>
+                <div class="payment-price">BEA:1,5%</div>
+            </div>
+        </div>
+    </div>
+        <div style="margin-top: 20px;">
+        <button class="btn-buy">Beli Sekarang</button>
+    </div>
+</div>
+                    <script>function selectPayment(element) {
+    const items = document.querySelectorAll('.payment-item');
+    items.forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+}
+</script>
+<script>
+function selectNominal(element) {
+    // 1. Cari semua item nominal
+    const nominals = document.querySelectorAll('.nominal-item');
+    
+    // 2. Hapus class 'active' dari semua item
+    nominals.forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // 3. Tambahkan class 'active' ke item yang baru saja diklik
+    element.classList.add('active');
+}
+</script>
+<div id="checkout-modal" class="modal">
+    <div class="modal-content">
+        <h3 style="color: #008080; margin-top: 0;">Detail Pesanan FF</h3>
+        <hr style="border: 0.5px solid #eee;">
+        <div class="modal-body">
+            <p><strong>ID Player:</strong> <span id="res-id">-</span></p>
+            <p><strong>Item:</strong> <span id="res-item">-</span></p>
+            <p><strong>Pembayaran:</strong> <span id="res-payment">-</span></p>
+        </div>
+        <div class="modal-footer">
+            <div class="total-section" style="background: rgba(0, 128, 128, 0.05); padding: 10px; border-radius: 8px; margin: 15px 0;">
+                <span style="font-size: 0.8rem; color: #666; display: block;">Total Pembayaran:</span>
+                <span id="res-total" style="font-size: 1.3rem; font-weight: bold; color: #008080;">Rp 0</span>
+            </div>
+            <div class="modal-buttons" style="display: flex; gap: 10px;">
+                <button class="btn-cancel" onclick="closeModal()" style="flex: 1; padding: 12px; border: none; border-radius: 8px; background: #eee; cursor: pointer; font-weight: bold;">Batal</button>
+                <button id="btn-konfirmasi" class="btn-confirm" style="flex: 2; padding: 12px; border: none; border-radius: 8px; background: #008080; color: white; cursor: pointer; font-weight: bold;">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// Fungsi membersihkan angka
+function extractNumber(text) {
+    if (!text) return 0;
+    let clean = text.replace(/[^0-9]/g, '');
+    return parseInt(clean) || 0;
+}
+
+// Event saat tombol Beli Sekarang diklik
+document.querySelector('.btn-buy').addEventListener('click', function() {
+    const userId = document.getElementById('user-id').value;
+    const activeNominal = document.querySelector('.nominal-item.active');
+    const activePayment = document.querySelector('.payment-item.active');
+
+    if(!userId) {
+        alert("Harap masukkan ID Player!");
+        return;
+    }
+    if(!activeNominal || !activePayment) {
+        alert("Pilih nominal dan metode pembayaran!");
+        return;
+    }
+
+    // Ambil Data
+    const itemName = activeNominal.querySelector('p').innerText;
+    const itemPrice = extractNumber(activeNominal.querySelector('span').innerText);
+    const paymentName = activePayment.querySelector('.payment-name').innerText;
+    const feeText = activePayment.querySelector('.payment-price').innerText;
+
+    // Hitung Total
+    let total = itemPrice;
+    if (feeText.includes('%')) {
+        let percent = parseFloat(feeText.replace(/[^0-9,]/g, '').replace(',', '.')) / 100;
+        total = itemPrice + (itemPrice * percent);
+    } else {
+        total = itemPrice + extractNumber(feeText);
+    }
+
+    // Tampilkan di Overlay
+    document.getElementById('res-id').innerText = userId;
+    document.getElementById('res-item').innerText = itemName;
+    document.getElementById('res-payment').innerText = paymentName;
+    document.getElementById('res-total').innerText = "Rp " + Math.round(total).toLocaleString('id-ID');
+
+    document.getElementById('checkout-modal').style.display = "block";
+});
+
+// Fungsi Tutup Modal
+function closeModal() {
+    document.getElementById('checkout-modal').style.display = "none";
+}
+
+// Konfirmasi ke WhatsApp
+document.getElementById('btn-konfirmasi').addEventListener('click', function() {
+    const idPlayer = document.getElementById('res-id').innerText;
+    const produk = document.getElementById('res-item').innerText;
+    const metode = document.getElementById('res-payment').innerText;
+    const total = document.getElementById('res-total').innerText;
+    
+    const nomorWA = "6283857793319";
+    const teksPesan = 
+        `-------TOP UP FREE FIRE🔥-------%0A` +
+        `ID PLAYER: ${idPlayer}%0A` +
+        `PRODUK: ${produk}%0A` +
+        `METODE PEMBAYARAN: ${metode}%0A` +
+        `TOTAL: ${total}%0A%0A` +
+        `TOLONG YA MIN AKU MAU BELI DENGAN DATA TERSEBUT MOHON DI RESPON YA🙏🏻`;
+
+    window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`, '_blank');
+     window.open(urlWA, '_blank');
+});
+</script>

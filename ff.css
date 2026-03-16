@@ -1,0 +1,308 @@
+body {
+    background-color: #f0f2f1;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container { max-width: 500px; margin: auto; }
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Header */
+.item-wide { display: flex; align-items: center; gap: 15px; }
+.banner-img { width: 70px; height: 70px; border-radius: 12px; border: 2px solid #008080; }
+.info-title { display: flex; align-items: center; gap: 8px; }
+.info h4 { margin: 0; color: #008080; }
+.info p { margin: 0; color: #888; font-size: 0.8rem; }
+
+/* Grid System */
+.grid-nominal, .grid-payment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.nominal-item, .payment-item {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nominal-item.active, .payment-item.active {
+    border: 2px solid #008080;
+    background: rgba(0, 128, 128, 0.05);
+}
+
+/* Tombol Beli */
+.btn-buy {
+    width: 100%;
+    padding: 15px;
+    background: #008080;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Modal Styling (Hidden by default) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background: white;
+    margin: 20% auto;
+    padding: 20px;
+    width: 85%;
+    border-radius: 15px;
+}
+/* Tambahkan CSS total-price dsb dari MLBB tadi di sini */
+/* Container input agar tidak melebar ke samping */
+.input-group {
+    display: flex;
+    justify-content: flex-start; /* Agar kotak berada di kiri */
+}
+
+.input-group input {
+    width: 250px; /* Ukuran yang pas untuk 16 digit */
+    max-width: 100%; 
+    padding: 12px 15px;
+    border: 2px solid #008080;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 1px; /* Memberi jarak antar angka agar mudah dibaca */
+    background-color: rgba(0, 128, 128, 0.02);
+}
+
+/* Menghilangkan panah atas-bawah di input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Styling Judul Langkah (Step Title) */
+.step-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #008080; /* Teks Step jadi Hijau Toska */
+}
+
+.step-title span {
+    background-color: #008080;
+    color: white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+}
+
+/* Styling Kotak Input ID */
+/* Container input agar tidak ngelebar ke samping */
+.input-group {
+    display: flex;
+    justify-content: flex-start; /* Agar kotak berada di kiri */
+}
+
+.input-group input {
+    /* --- INI YANG DIUBAH --- */
+    width: 200px; /* Kita set lebar statis. Ini ukuran pas buat 16 digit angka */
+    /* ----------------------- */
+    
+    max-width: 100%; /* Jaga-jaga kalau layarnya super sempit */
+    padding: 12px 15px;
+    border: 2px solid #008080;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.1rem; /* Biar angkanya gede dan jelas */
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 1.5px; /* Memberi jarak antar angka biar mudah di cek ulang */
+    background-color: rgba(0, 128, 128, 0.02);
+}
+
+/* Biar tidak ada panah atas-bawah di input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Teks Petunjuk (Hint) */
+.input-hint {
+    font-size: 0.75rem;
+    color: #008080; /* Teks petunjuk juga jadi toska agar senada */
+    margin-top: 10px;
+    font-style: italic;
+}
+/* Container Grid Pembayaran */
+.grid-payment {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Membagi jadi 2 kolom sama rata */
+    gap: 12px;
+}
+
+.payment-item {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.payment-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.payment-top img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.payment-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.payment-price {
+    font-size: 0.8rem;
+    color: #008080; /* Warna Hijau Toska untuk BEA */
+    font-weight: 600;
+    text-align: right;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 5px;
+}
+
+/* State Aktif saat diklik */
+.payment-item.active {
+    border: 2px solid #008080;
+    background-color: rgba(0, 128, 128, 0.05);
+    transform: translateY(-2px); /* Efek melayang sedikit */
+}
+
+.payment-item:hover {
+    border-color: #008080;
+}
+/* Gaya dasar nominal item */
+.nominal-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+}
+
+/* State saat nominal dipilih (Active) */
+.nominal-item.active {
+    border: 2px solid #008080 !important; /* Hijau Toska */
+    background-color: rgba(0, 128, 128, 0.05) !important;
+    transform: scale(1.02); /* Sedikit membesar */
+}
+
+.nominal-item p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.nominal-item span {
+    color: #008080;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.btn-buy {
+    width: 100%;
+    padding: 16px;
+    background-color: #008080; /* Hijau Toska */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 128, 128, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-buy:hover {
+    background-color: #006666; /* Warna lebih gelap saat hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 128, 128, 0.3);
+}
+
+.btn-buy:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 128, 128, 0.2);
+}
+/* Container utama header */
+.product-header {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.item-wide {
+    display: flex;
+    align-items: center; /* Supaya teks dan gambar sejajar tengah secara vertikal */
+    gap: 15px; /* Memberi jarak antara gambar dan teks */
+}
+
+/* Ukuran Banner/Ikon utama yang tadi jadi gede banget */
+.banner-img {
+    width: 80px;      /* Kita kunci lebarnya jadi 80px */
+    height: 80px;     /* Tingginya juga 80px */
+    object-fit: cover; /* Agar gambar tidak gepeng */
+    border-radius: 12px;
+    border: 2px solid #008080; /* Border hijau toska */
+}
+
+.info-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-title h4 {
+    margin: 0;
+    color: #008080;
+    font-size: 1.2rem;
+}
+
+.info p {
+    margin: 0;
+    color: #888;
+    font-size: 0.85rem;
+}

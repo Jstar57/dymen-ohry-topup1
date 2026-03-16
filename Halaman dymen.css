@@ -1,0 +1,411 @@
+:root {
+    --bg-dark: #1a1a1a;
+    --bg-card: #252525;
+    --primary-pink: #00665c; /* Berubah jadi Hijau Dongker */
+    --text-white: #ffffff;
+    --text-gray: #b0b0b0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    padding-bottom: 50px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #111;
+}
+
+.logo {
+    color: var(--primary-pink);
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Banner */
+.banner-container {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.banner {
+    min-width: 85%;
+    height: 180px;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #333, #555);
+}
+
+/* Sections */
+.section {
+    padding: 20px 15px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 { font-size: 1.1rem; }
+.sub-text {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+}
+
+/* Flash Sale Card */
+.card-flash {
+  display: flex;
+  justify-content: flex-start;
+    background: var(--bg-card);
+    border-radius: 12px;
+    width: 250px;
+    position: ;
+    overflow-x: auto;
+    border-bottom: 4px solid var(--primary-pink);
+    display: flex !important;
+    flex-direction: row;
+}
+
+.card-content { padding: 15px;}
+.card-content h3 { font-size: 0.9rem; margin-bottom: 5px; }
+.card-content p { font-size: 0.75rem; color: var(--text-gray); }
+
+.price { margin: 10px 0; }
+.curr-price { color: #00cca3; font-weight: bold; } /* Hijau terang untuk harga */
+.old-price { text-decoration: line-through; color: var(--text-gray); font-size: 0.8rem; margin-left: 5px; }
+
+.progress-bar {
+    height: 6px;
+    background: #444;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.fill { background: var(--primary-pink); height: 100%; border-radius: 10px; }
+.sold-text { font-size: 0.65rem; color: var(--text-gray); }
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 10px;
+}
+
+.discount-tag { background: #002e2a; color: #00ffcc; font-size: 0.7rem; padding: 3px 8px; border-radius: 5px; }
+.instan-tag { background: #222; font-size: 0.7rem; padding: 3px 8px; border-radius: 5px; color: #00ffcc; }
+
+/* Container utama untuk mengatur posisi kotak */
+.container-game {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Maksimal 2 kotak ke samping */
+    gap: 15px; /* Jarak antar kotak agar tidak menempel */
+    padding: 10px;
+    background-color: #000; /* Background dasar hitam */
+}
+
+/* Styling setiap kotak item */
+.grid-item {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a; /* Warna dalam kotak hitam agak terang */
+    
+    /* Border Kotak Hijau Dongker */
+    border: 2px solid #00665c; 
+    border-radius: 4px; /* Sudut kotak (ubah ke 0px jika ingin sangat tajam) */
+    
+    padding: 10px;
+    transition: 0.3s;
+}
+
+/* Efek saat kursor di atas kotak (opsional) */
+.grid-item:hover {
+    box-shadow: 0 0 10px #00665c; /* Efek menyala hijau */
+}
+
+/* Styling gambar di dalam kotak */
+.grid-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin-right: 15px;
+    border: 1px solid #00665c; /* Border hijau kecil untuk gambar */
+}
+
+/* Text styling */
+.info h4 {
+    color: #00cca3; 
+    margin: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.info p {
+    color: #ffffff;
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+}
+
+.grid-item img { width: 50px; border-radius: 8px; }
+.info h4 { font-size: 0.85rem; }
+.info p { font-size: 0.7rem; color: var(--text-gray); }
+
+/* Floating Button */
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00665c;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 102, 92, 0.4);
+}
+
+.banner-slider {
+    width: 95%;
+    margin: 15px auto;
+    overflow: hidden; /* Sembunyikan gambar yang di luar frame */
+    border-radius: 15px;
+    position: relative;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Efek halus saat geser */
+    width: 100%;
+}
+
+.slide {
+    min-width: 100%; /* Satu slide memenuhi layar */
+}
+
+.slide img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Agar gambar tidak gepeng */
+    display: block;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #444; /* Warna dasar saat kosong */
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    background: #00665c;
+    height: 100%;
+    width: 0%; /* Default 0, akan diisi oleh JS */
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out; /* Animasi geser */
+}
+body { background-color: #121212; font-family: sans-serif; padding: 20px; }
+
+/* Container Utama */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #121212; /* Hitam Pekat */
+  border: 1.5px solid #00665c; /* Border Hijau Neon Gelap */
+  border-radius: 4px; /* Sudut agak tajam agar modern */
+  padding: 2px 8px;
+  width: 150px; /* Lebar kolom */
+  transition: all 0.3s ease;
+}
+
+/* Input Teks */
+.search-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #00cca3; /* Teks warna hijau terang */
+  font-family: sans-serif;
+  font-size: 11px;
+  height: 18px; /* Ukuran mungil */
+  width: 100%;
+}
+
+/* Placeholder (Teks bayangan) */
+.search-field::placeholder {
+  color: #00332e; /* Hijau sangat gelap agar tidak terlalu kontras */
+}
+
+/* Tombol Ikon */
+.search-icon {
+  background: none;
+  border: none;
+  color: #00665c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+/* Efek saat diklik/fokus */
+.search-wrapper:focus-within {
+  box-shadow: 0 0 10px rgba(0, 102, 92, 0.4);
+  border-color: #00cca3;
+  width: 180px; /* Sedikit melebar saat diklik */
+}
+
+.search-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #00665c;
+  height: 20px;
+  width: 100%;
+}
+
+#myList {
+  list-style: none;
+  padding: 0;
+}
+/* Penambahan Background Biru Tua */
+body {
+    background-color: #000033 !important;
+}
+
+.container-game {
+    background-color: #000033 !important;
+}
+
+.search-wrapper {
+    background: #000033 !important;
+}
+--- c:\Users\ACER\Documents\myprojek\Halaman dymen.css
++++ c:\Users\ACER\Documents\myprojek\Halaman dymen.css
+@@ -38,6 +38,7 @@
+     display: flex;
+     gap: 15px;
+     align-items: center;
++    position: relative;
+ }
+ 
+ /* Banner */
+@@ -323,3 +324,25 @@
+ .search-wrapper {
+     background: #000033 !important;
+ }
++
++/* Menu Dropdown Nimpa */
++.dropdown-menu {
++    position: absolute;
++    top: 100%; /* Muncul tepat di bawah ikon */
++    right: 0;
++    width: 160px;
++    background: #252525;
++    border: 1px solid #00665c;
++    border-radius: 8px;
++    display: none; /* Tersembunyi secara default */
++    flex-direction: column;
++    z-index: 9999; /* Pastikan menimpa elemen lain */
++    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
++    overflow: hidden;
++}
++.nav-icons:hover .dropdown-menu { display: flex; }
++.dropdown-menu a {
++    padding: 12px 15px;
++    color: #fff;
++    text-decoration: none;
++    font-size: 0.9rem;
++    border-bottom: 1px solid #333;
++    transition: 0.3s;
++}
++.dropdown-menu a:hover { background: #00665c; }
+/* Kotak menu melayang */
+.menu-nimpa {
+    position: absolute;
+    top: 60px; /* Jarak dari atas (sesuaikan tinggi navbar) */
+    right: 20px; /* Muncul di sisi kanan */
+    background: #222; /* Warna gelap biar masuk tema */
+    border: 1px solid #444;
+    border-radius: 8px;
+    width: 200px;
+    display: none; /* Sembunyi dulu */
+    flex-direction: column;
+    z-index: 9999; /* Pastikan di atas semua elemen */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+/* Link di dalam menu */
+.menu-nimpa a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #333;
+    transition: 0.2s;
+}
+
+.menu-nimpa a:hover {
+    background: #333;
+    color: #ffcc00;
+}
+
+/* Munculkan menu */
+.menu-nimpa.show {
+    display: flex;
+}
+.item-wide {
+    /* Agar border hanya membungkus konten (tidak memanjang) */
+    display: inline-flex; 
+    align-items: center;
+    gap: 15px;
+
+    /* Border Hijau Toska */
+    border: 2px solid #008080;
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+/* Mengubah warna teks Mobile Legends */
+.info h4 {
+    margin: 0;
+    color: #008080; /* Warna Hijau Toska yang sama dengan border */
+    font-family: sans-serif;
+}
+
+.info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+}
+
+/* Opsional: Membuat gambar sedikit lebih rapi */
+.item-wide img {
+    border-radius: 8px;
+    display: block;
+}

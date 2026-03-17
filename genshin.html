@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Genshin Impact - Gogogo Style</title>
+    <link rel="stylesheet" href="genshin.css">
+</head>
+<body>
+
+<div class="container">
+ <div class="card product-header">
+    <div class="item-wide">
+        <img src="https://cdn2.steamgriddb.com/icon/ffbab8235ddc5c0290ecd6ceccc0a61a.png" alt="Genshin Impact" class="banner-img">
+        
+        <div class="info">
+            <div class="info-title">
+                <h4>Genshin Impact</h4>
+            </div>
+            <p>HoYoverse</p>
+        </div>
+    </div>
+</div>   
+    </div>
+   <div class="container">
+    <div class="card">
+    <div class="step-title"><span>1</span> Masukkan Data Akun</div>
+    <div class="input-group-Horizontal">
+        <input type="number" id="user-id" placeholder="Masukkan UID">
+        
+        <select id="server-select">
+            <option value="" disabled selected>( Pilih Server )</option>
+            <option value="Asia">Asia</option>
+            <option value="America">America</option>
+            <option value="Europe">Europe</option>
+            <option value="TW_HK_MO">TW_HK_MO</option>
+        </select>
+    </div>
+    <p class="input-hint">UID dapat ditemukan di pojok kanan bawah layar.</p>
+</div>
+
+    <div class="grid-nominal">
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>Blessing of the Welkin Moon</p>
+        <span>Rp 79.000</span>
+    </div>
+
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>60 Genesis Crystals</p>
+        <span>Rp 16.000</span>
+    </div>
+
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>300 + 30 Genesis Crystals</p>
+        <span>Rp 79.000</span>
+    </div>
+
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>980 + 110 Genesis Crystals</p>
+        <span>Rp 249.000</span>
+    </div>
+
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>1980 + 260 Genesis Crystals</p>
+        <span>Rp 499.000</span>
+    </div>
+
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>3280 + 600 Genesis Crystals</p>
+        <span>Rp 799.000</span>
+    </div>
+
+    <div class="nominal-item" onclick="selectNominal(this)">
+        <p>6480 + 1600 Genesis Crystals</p>
+        <span>Rp 1.599.000</span>
+    </div>
+</div>
+
+    <div class="card">
+    <div class="step-title"><span>3</span> Pilih Metode Pembayaran</div>
+    <div class="grid-payment">
+        <div class="payment-item" onclick="selectPayment(this)">
+            <div class="payment-top">
+                <img src="https://img.icons8.com/color/48/dana.png" alt="DANA">
+                <span class="payment-name">DANA</span>
+            </div>
+            <div class="payment-price">BEA:500</div>
+        </div>
+
+        <div class="payment-item" onclick="selectPayment(this)">
+            <div class="payment-top">
+                <img src="https://img.icons8.com/color/48/ovo.png" alt="OVO">
+                <span class="payment-name">OVO</span>
+            </div>
+            <div class="payment-price">BEA:800</div>
+        </div>
+
+        <div class="payment-item" onclick="selectPayment(this)">
+            <div class="payment-top">
+                <img src="https://img.icons8.com/color/48/gopay.png" alt="GoPay">
+                <span class="payment-name">GoPay</span>
+            </div>
+            <div class="payment-price">BEA:2.100</div>
+        </div>
+
+        <div class="payment-item" onclick="selectPayment(this)">
+            <div class="payment-top">
+                <img src="https://img.icons8.com/color/48/qris.png" alt="QRIS">
+                <span class="payment-name">QRIS</span>
+            </div>
+            <div class="payment-price">BEA:1,5%</div>
+        </div>
+    </div>
+</div>
+
+    <button class="btn-buy">BELI SEKARANG</button>
+</div>
+<script>function selectPayment(element) {
+    const payments = document.querySelectorAll('.payment-item');
+    payments.forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+}</script>
+<script>function selectNominal(element) {
+    // Ambil semua kotak nominal
+    const items = document.querySelectorAll('.nominal-item');
+    
+    // Hapus class active dari semua kotak
+    items.forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Tambahkan class active ke kotak yang baru diklik
+    element.classList.add('active');
+}</script>
+<script src="genshin-script.js"></script>
+<div id="checkout-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 style="color: #008080; margin-bottom: 20px; text-align: center;">Detail Pesanan</h3>
+            
+            <div class="modal-body">
+                <div class="summary-item"><span class="label">UID:</span> <span id="res-id" class="value">-</span></div>
+                <div class="summary-item"><span class="label">Server:</span> <span id="res-server" class="value">-</span></div>
+                <div class="summary-item"><span class="label">Produk:</span> <span id="res-item" class="value">-</span></div>
+                <div class="summary-item"><span class="label">Metode Bayar:</span> <span id="res-payment" class="value">-</span></div>
+                <div class="total-box">
+                    <span class="total-label">Total Pembayaran:</span>
+                    <span id="res-total" class="total-value">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" onclick="closeModal()">Batal</button>
+                <button type="button" id="btn-konfirmasi" class="btn-confirm">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+
+</div> <script>
+    // FUNGSI TUTUP MODAL
+    function closeModal() {
+        document.getElementById('checkout-modal').style.display = "none";
+    }
+
+    // LOGIKA TOMBOL BELI (Sederhana & Pasti Jalan)
+    document.querySelector('.btn-buy').addEventListener('click', function() {
+        const uid = document.getElementById('user-id').value;
+        const server = document.getElementById('server-select').value;
+        const activeNominal = document.querySelector('.nominal-item.active');
+        const activePayment = document.querySelector('.payment-item.active');
+
+        if(!uid || !server || !activeNominal || !activePayment) {
+            alert("Lengkapi data dulu bre!");
+            return;
+        }
+
+        // Isi data ke modal
+        document.getElementById('res-id').innerText = uid;
+        document.getElementById('res-server').innerText = server;
+        document.getElementById('res-item').innerText = activeNominal.querySelector('p').innerText;
+        document.getElementById('res-payment').innerText = activePayment.querySelector('.payment-name').innerText;
+        document.getElementById('res-total').innerText = activeNominal.querySelector('span').innerText;
+
+        // Tampilkan modal
+        document.getElementById('checkout-modal').style.display = "block";
+    });
+
+    // TUTUP JIKA KLIK LUAR KOTAK
+    window.onclick = function(event) {
+        const modal = document.getElementById('checkout-modal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+    // Fungsi untuk mengambil angka saja (hapus Rp dan titik)
+function cleanNumber(text) {
+    return parseInt(text.replace(/[^0-9]/g, '')) || 0;
+}
+
+// Fungsi Tutup Modal
+function closeModal() {
+    document.getElementById('checkout-modal').style.display = "none";
+}
+
+// Logika Tombol Beli
+document.querySelector('.btn-buy').addEventListener('click', function() {
+    const uid = document.getElementById('user-id').value;
+    const server = document.getElementById('server-select').value;
+    const activeNominal = document.querySelector('.nominal-item.active');
+    const activePayment = document.querySelector('.payment-item.active');
+
+    if(!uid || !server || !activeNominal || !activePayment) {
+        alert("Lengkapi data dulu bre!");
+        return;
+    }
+
+    // 1. Ambil Harga Dasar Produk
+    const hargaProduk = cleanNumber(activeNominal.querySelector('span').innerText);
+    
+    // 2. Hitung BEA Admin
+    const teksBea = activePayment.querySelector('.payment-price').innerText;
+    let nominalBea = 0;
+
+    if (teksBea.includes('%')) {
+        // Hitung persen (misal 1,5% dari harga)
+        let persen = parseFloat(teksBea.replace(/[^0-9,]/g, '').replace(',', '.')) / 100;
+        nominalBea = hargaProduk * persen;
+    } else {
+        // Ambil angka langsung (misal 500)
+        nominalBea = cleanNumber(teksBea);
+    }
+
+    const totalAkhir = hargaProduk + nominalBea;
+
+    // 3. Masukkan ke Overlay
+    document.getElementById('res-id').innerText = uid;
+    document.getElementById('res-server').innerText = server;
+    document.getElementById('res-item').innerText = activeNominal.querySelector('p').innerText;
+    document.getElementById('res-payment').innerText = activePayment.querySelector('.payment-name').innerText;
+    
+    // Tampilkan total dengan format rupiah yang rapi
+    document.getElementById('res-total').innerText = "Rp " + Math.round(totalAkhir).toLocaleString('id-ID');
+
+    document.getElementById('checkout-modal').style.display = "block";
+});
+
+// Tutup jika klik area gelap
+window.onclick = function(event) {
+    const modal = document.getElementById('checkout-modal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+document.getElementById('btn-konfirmasi').addEventListener('click', function() {
+    // Ambil data dari tampilan overlay
+    const uid = document.getElementById('res-id').innerText;
+    const server = document.getElementById('res-server').innerText;
+    const produk = document.getElementById('res-item').innerText;
+    const metode = document.getElementById('res-payment').innerText;
+    const total = document.getElementById('res-total').innerText;
+    
+    const waNumber = "6283857793319";
+    
+    // Format Pesan sesuai request kamu
+    const pesan = `_____HALO MIN MAU TOP UP GENSHIN____%0A` +
+                  `ID: ${uid}%0A` +
+                  `ID SERVER: ${server}%0A` +
+                  `PRODUK: ${produk}%0A` +
+                  `METODE PEMBAYARAN: ${metode}%0A` +
+                  `TOTAL: ${total}%0A%0A` +
+                  `MOHON DI JAWAB LALU DI PROSES KE PEMBAYARAN YA MIN!`;
+
+    // Buka WhatsApp di tab baru
+    window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${pesan}`, '_blank');
+});
+</script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,384 @@
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body { background-color: #f0f4f4; padding: 20px; }
+
+.container { max-width: 500px; margin: auto; }
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.step-title {
+    color: #008080;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.step-title span {
+    background: #008080;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+/* Biar sejajar kanan-kiri */
+.input-group-Horizontal {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group-Horizontal input {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input-group-Horizontal input:focus {
+    border-color: #008080;
+}
+
+/* Grid Nominal biar rapi kotak-kotak */
+.grid-nominal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.nominal-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nominal-item.active {
+    border: 2px solid #008080;
+    background: #f0ffff;
+}
+
+.nominal-item p { font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; }
+.nominal-item span { color: #008080; font-weight: bold; }
+
+/* Tombol Beli */
+.btn-buy {
+    width: 100%;
+    padding: 15px;
+    background: #008080;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Header Styling */
+.product-header {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.item-wide {
+    display: flex;
+    align-items: center; /* Teks & Gambar sejajar tengah */
+    gap: 15px; /* Jarak gambar ke teks */
+}
+
+.banner-img {
+    width: 70px; /* Ukuran ikon game */
+    height: 70px;
+    border-radius: 14px; /* Sudut ikon agak tumpul */
+    border: 2px solid #008080; /* Border toska biar senada */
+    object-fit: cover;
+}
+
+.info-title h4 {
+    margin: 0;
+    color: #008080; /* Nama Game Hijau Toska */
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.info p {
+    margin: 0;
+    color: #888; /* Nama Studio Abu-abu */
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+/* Tambahkan ini di genshin.css */
+.payment-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-top img {
+    width: 25px; /* Ukuran logo DANA/QRIS */
+    height: auto;
+}
+/* Container Grid Pembayaran */
+.grid-payment {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Jadi 2 kolom biar seimbang */
+    gap: 12px;
+}
+
+.payment-item {
+    border: 2px solid #e2e8f0; /* Border awal abu-abu terang */
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Border & Background saat AKTIF (Diklik) */
+.payment-item.active {
+    border: 2px solid #008080; /* Border Hijau Toska */
+    background-color: rgba(0, 128, 128, 0.05);
+}
+
+.payment-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.payment-top img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.payment-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.payment-price {
+    font-size: 0.8rem;
+    color: #008080; /* Teks BEA Hijau Toska */
+    font-weight: 600;
+    text-align: right;
+    border-top: 1px solid #f1f1f1;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+.grid-nominal {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Kolom rapi */
+    gap: 12px;
+}
+
+.nominal-item {
+    border: 2px solid #e2e8f0; /* Border default abu-abu */
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+}
+
+/* KUNCI: Style saat produk dipilih */
+.nominal-item.active {
+    border: 2px solid #008080 !important; /* Border Hijau Toska */
+    background-color: rgba(0, 128, 128, 0.05) !important;
+    transform: scale(1.02); /* Sedikit membesar biar kerasa interaksinya */
+}
+
+.nominal-item p {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.nominal-item span {
+    font-size: 0.95rem;
+    color: #008080; /* Harga warna toska */
+    font-weight: 700;
+}
+/* Menyamakan gaya Dropdown dengan Input */
+#server-select {
+    flex: 1; /* Biar lebarnya sama dengan kotak UID */
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background-color: white;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+    /* Menghilangkan panah default browser agar lebih bersih (opsional) */
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23008080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Saat dropdown diklik atau aktif */
+#server-select:focus {
+    border-color: #008080;
+    box-shadow: 0 0 0 4px rgba(0, 128, 128, 0.08);
+}
+
+/* Menyesuaikan placeholder select */
+#server-select option:first-child {
+    color: #a0aec0;
+}
+/* Styling Modal */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Background gelap transparan */
+    backdrop-filter: blur(4px); /* Efek blur estetik */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #eee;
+}
+
+.label { color: #888; font-size: 0.9rem; }
+.value { font-weight: 700; color: #333; }
+
+.total-box {
+    background: rgba(0, 128, 128, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.total-label { display: block; font-size: 0.8rem; color: #666; }
+.total-value { font-size: 1.4rem; font-weight: 800; color: #008080; }
+
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #eee;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-confirm {
+    flex: 2;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #008080;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee; /* Kasih garis biar rapi */
+}
+
+.btn-cancel {
+    flex: 1;
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-confirm {
+    flex: 2;
+    background-color: #008080; /* Hijau Toska Kebanggaan */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* Gaya Kotak: Border WAJIB Hijau Toska dari awal! */
+.nominal-item, .payment-item {
+    /* Border langsung Hijau Toska tegas 2px */
+    border: 2px solid #008080; 
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
+    /* Memberi jarak antar kotak agar tidak menempel */
+    margin-bottom: 5px; 
+}
+
+/* Memberi jarak antar SECTION (Data Akun, Nominal, Pembayaran) */
+.card {
+    margin-bottom: 25px; /* Ini biar antar blok (step 1, 2, 3) ada spasinya */
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* EFEK SAAT DIPILIH (Active) */
+.nominal-item.active, .payment-item.active {
+    /* Background jadi hijau toska transparan saat diklik */
+    background-color: rgba(0, 128, 128, 0.2) !important;
+    
+    /* Kasih sedikit bayangan biar makin mantap */
+    box-shadow: 0 4px 12px rgba(0, 128, 128, 0.2);
+}
+
+/* Efek Hover biar kerasa interaktif */
+.nominal-item:hover, .payment-item:hover {
+    background-color: rgba(0, 128, 128, 0.05);
+}

@@ -91,6 +91,14 @@
             </div>
         </div>
     </div>
+        <div class="card">
+    <div class="step-title"><span>4</span> Kode Promo (Opsional)</div>
+    <div class="promo-group" style="display: flex; gap: 10px;">
+        <input type="text" id="promo-code" placeholder="Masukkan kode promo" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        <button id="btn-apply-promo" type="button" style="padding: 10px 20px; background: #ff9800; color: white; border: none; border-radius: 5px; cursor: pointer;">Gunakan</button>
+    </div>
+    <p id="promo-status" style="font-size: 12px; margin-top: 5px; display: none;"></p>
+</div>
         <div style="margin-top: 20px;">
         <button class="btn-buy">Beli Sekarang</button>
     </div>
@@ -208,3 +216,56 @@ document.getElementById('btn-konfirmasi').addEventListener('click', function() {
      window.open(urlWA, '_blank');
 });
 </script>
+<script>document.querySelector('.btn-buy').addEventListener('click', function() {
+    const userId = document.getElementById('user-id').value;
+    const zoneId = document.getElementById('zone-id').value;
+    const activeNominalItem = document.querySelector('.nominal-item.active');
+    const activePaymentItem = document.querySelector('.payment-item.active');
+    const promoInput = document.getElementById('promo-code').value.trim(); // Ambil kode promo
+
+    if(!userId || !zoneId || !activeNominalItem || !activePaymentItem) {
+        alert("Lengkapi data terlebih dahulu!");
+        return;
+    }
+
+    const itemPriceText = activeNominalItem.querySelector('span').innerText;
+    const feeText = activePaymentItem.querySelector('.payment-price').innerText;
+
+    let basePrice = extractNumber(itemPriceText);
+    
+    // --- LOGIKA PROMO 7% ---
+    const KODE_VALID = "DISKON7"; // Ganti dengan kode yang kamu mau
+    let potongan = 0;
+    
+    if (promoInput === KODE_VALID) {
+        potongan = basePrice * 0.07; // Hitung 7%
+        basePrice = basePrice - potongan;
+        document.getElementById('promo-status').innerText = "Kode Promo Berhasil Digunakan! (Diskon 7%)";
+        document.getElementById('promo-status').style.color = "green";
+        document.getElementById('promo-status').style.display = "block";
+    } else if (promoInput !== "") {
+        document.getElementById('promo-status').innerText = "Kode Promo Tidak Valid";
+        document.getElementById('promo-status').style.color = "red";
+        document.getElementById('promo-status').style.display = "block";
+    }
+
+    // Hitung Total Akhir (setelah diskon + biaya admin)
+    let total = basePrice;
+    if (feeText.includes('%')) {
+        let percentValue = feeText.replace('BEA:', '').replace('%', '').replace(',', '.');
+        let percent = parseFloat(percentValue) / 100;
+        total = basePrice + (basePrice * percent);
+    } else {
+        total = basePrice + extractNumber(feeText);
+    }
+
+    // Update Tampilan Modal
+    document.getElementById('res-id').innerText = `${userId} (${zoneId})`;
+    document.getElementById('res-item').innerText = activeNominalItem.querySelector('p').innerText + (potongan > 0 ? " (Promo 7%)" : "");
+    document.getElementById('res-payment').innerText = activePaymentItem.querySelector('.payment-name').innerText;
+    document.getElementById('res-total').innerText = "Rp " + Math.round(total).toLocaleString('id-ID');
+    
+    document.getElementById('checkout-modal').style.display = "block";
+    
+    // ... sisa kode modal (closeModal dll) tetap sama ...
+});</script>

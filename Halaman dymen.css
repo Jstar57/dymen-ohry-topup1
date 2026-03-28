@@ -210,7 +210,6 @@ h2 { font-size: 1.1rem; }
 .slide img {
     width: 100%;
     height: 180px;
-    object-fit: cover; /* Agar gambar tidak gepeng */
     display: block;
 }
 
